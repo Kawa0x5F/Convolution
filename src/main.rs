@@ -8,8 +8,10 @@ fn main() {
     let mut ans: Vec<f32> = vec![0_f32; x1.len() + x2.len() - 1];
 
     // 畳み込みの計算
-    for i in 0 .. x1.len() {        // x1の長さだけループする
-        for j in 0 .. x2.len() {    // x2の長さだけループする
+    for i in 0..x1.len() {
+        // x1の長さだけループする
+        for j in 0..x2.len() {
+            // x2の長さだけループする
             // 答えを格納する場所をずらしながら加算していく
             ans[i + j] += x1[i] * x2[j];
         }
@@ -25,9 +27,10 @@ fn read_vec_float32() -> Vec<f32> {
     let mut line = String::new(); // 入力を受け取るための変数を作成
     stdin().read_line(&mut line).unwrap(); // 標準入力を受け取り， line に束縛する
 
-    // lineを空白で分割する
-    // mapでイテレータを作成し，要素と順番に取り出す．parseで &str を f32 に変換し，Resutl型で返す
-    // okはResult<T>，今回であればf32の値を取りだし，unwrapでResult<T>からTだけを取り出す
-    // collectで結果の値をまとめ，新規にVector型を作成する
-    return line.trim().split_whitespace().map(|e| e.parse::<f32>().ok().unwrap()).collect();
+    return line
+        .split_whitespace() // lineを空白で分割する
+        // mapでイテレータを作成し，要素と順番に取り出す．parseで &str を f32 に変換し，Resutl型で返す
+        // okはResult<T>，今回であればf32の値を取りだし，unwrapでResult<T>からTだけを取り出す
+        .map(|e| e.parse::<f32>().ok().unwrap())
+        .collect(); // collectで結果の値をまとめ，新規にVector型を作成する
 }
